@@ -1,24 +1,35 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
-import { ShoppingCart, Heart, Sun, Menu, X } from "lucide-react";
+import { ShoppingCart, Heart, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+
+import ButtonTheme from "./theme/ButtonTheme";
+import Image from "next/image";
 
 export default function Header() {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
-  const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
-  };
-
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="sticky top-0 z-50 border-b-2 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 dark:border-0">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           <div className="flex-shrink-0">
             <Link href="/" className="flex items-center space-x-2">
-              <span className="text-xl font-bold">ACME</span>
+              <Image
+                src={"/logo2.png"}
+                alt="logo Clothing Store"
+                width={50}
+                height={50}
+                priority
+              />
             </Link>
           </div>
           <nav className="hidden md:flex md:items-center md:justify-center md:flex-1">
@@ -36,10 +47,10 @@ export default function Header() {
           </nav>
           <div className="flex items-center">
             <div className="hidden md:block mr-4">
-              <input
+              <Input
                 type="search"
                 placeholder="Search..."
-                className="w-full rounded-xl border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                className="w-full rounded-xl"
               />
             </div>
             <div className="flex items-center space-x-2">
@@ -47,64 +58,57 @@ export default function Header() {
                 <ShoppingCart className="h-5 w-5" />
                 <span className="sr-only">Shopping Cart</span>
               </Button>
-              <Button variant="ghost" size="icon">
-                <Sun className="h-5 w-5" />
-                <span className="sr-only">Toggle theme</span>
-              </Button>
+              <ButtonTheme />
               <Button variant="ghost" size="icon">
                 <Heart className="h-5 w-5" />
                 <span className="sr-only">Favorites</span>
               </Button>
             </div>
             <div className="ml-4 md:hidden">
-              <Button variant="outline" size="icon" onClick={toggleMobileMenu}>
-                {isMobileMenuOpen ? (
-                  <X className="h-5 w-5" />
-                ) : (
-                  <Menu className="h-5 w-5" />
-                )}
-                <span className="sr-only">Toggle Menu</span>
-              </Button>
+              <Sheet>
+                <SheetTrigger asChild>
+                  <Button variant="link" size="icon">
+                    <Menu className="h-5 w-5" />
+                    <span className="sr-only">Open menu</span>
+                  </Button>
+                </SheetTrigger>
+                <SheetContent
+                  side="right"
+                  className="dark:bg-[#18181b] dark:text-white border-l-0"
+                >
+                  <SheetHeader>
+                    <SheetTitle>Menu</SheetTitle>
+                  </SheetHeader>
+                  <div className="mt-4 space-y-4">
+                    <Link href="/about" className="block text-base font-medium">
+                      About
+                    </Link>
+                    <Link
+                      href="/products"
+                      className="block text-base font-medium"
+                    >
+                      Products
+                    </Link>
+                    <Link
+                      href="/contact"
+                      className="block text-base font-medium"
+                    >
+                      Contact
+                    </Link>
+                  </div>
+                  <div className="mt-6">
+                    <Input
+                      type="search"
+                      placeholder="Search..."
+                      className="w-full rounded-xl"
+                    />
+                  </div>
+                </SheetContent>
+              </Sheet>
             </div>
           </div>
         </div>
       </div>
-      {isMobileMenuOpen && (
-        <div className="md:hidden">
-          <div className="space-y-1 px-2 pb-3 pt-2">
-            <Link
-              href="/about"
-              className="block rounded-md px-3 py-2 text-base font-medium"
-              onClick={toggleMobileMenu}
-            >
-              About
-            </Link>
-            <Link
-              href="/products"
-              className="block rounded-md px-3 py-2 text-base font-medium"
-              onClick={toggleMobileMenu}
-            >
-              Products
-            </Link>
-            <Link
-              href="/contact"
-              className="block rounded-md px-3 py-2 text-base font-medium"
-              onClick={toggleMobileMenu}
-            >
-              Contact
-            </Link>
-          </div>
-          <div className="border-t border-gray-200 pb-3 pt-4">
-            <div className="px-2">
-              <input
-                type="search"
-                placeholder="Search..."
-                className="w-full rounded-xl border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-              />
-            </div>
-          </div>
-        </div>
-      )}
     </header>
   );
 }
