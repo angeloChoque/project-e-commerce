@@ -4,7 +4,7 @@ import Link from "next/link";
 import { ShoppingCart, Heart, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-
+import { ITEMS_NAV } from "@/data/dataHeader";
 import {
   Sheet,
   SheetContent,
@@ -18,7 +18,7 @@ import Image from "next/image";
 
 export default function Header() {
   return (
-    <header className="sticky top-0 z-50 border-b-2 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 dark:border-0">
+    <header className="sticky top-0 z-50 border-b-2 w-full bg-white dark:bg-[#18181b] dark:border-0">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           <div className="flex-shrink-0">
@@ -34,15 +34,17 @@ export default function Header() {
           </div>
           <nav className="hidden md:flex md:items-center md:justify-center md:flex-1">
             <div className="flex space-x-8">
-              <Link href="/about" className="text-sm font-medium">
-                About
-              </Link>
-              <Link href="/products" className="text-sm font-medium">
-                Products
-              </Link>
-              <Link href="/contact" className="text-sm font-medium">
-                Contact
-              </Link>
+              {ITEMS_NAV.map((items) => {
+                return (
+                  <Link
+                    key={items.name}
+                    href={items.href}
+                    className="text-sm font-medium"
+                  >
+                    {items.name}
+                  </Link>
+                );
+              })}
             </div>
           </nav>
           <div className="flex items-center">
@@ -81,19 +83,19 @@ export default function Header() {
                   </SheetHeader>
                   <div className="mt-4 space-y-4">
                     <Link href="/about" className="block text-base font-medium">
-                      About
+                      Men
                     </Link>
                     <Link
                       href="/products"
                       className="block text-base font-medium"
                     >
-                      Products
+                      Women
                     </Link>
                     <Link
                       href="/contact"
                       className="block text-base font-medium"
                     >
-                      Contact
+                      Shoes
                     </Link>
                   </div>
                   <div className="mt-6">

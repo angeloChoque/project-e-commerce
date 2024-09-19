@@ -3,7 +3,10 @@ import React from "react";
 
 const NotFound = () => {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gray-100 dark:bg-black">
+    <div
+      className="flex min-h-screen items-center justify-center absolute inset-0 -z-10 h-full w-full
+    bg-white bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] dark:[background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#63e_100%)]"
+    >
       <div className="text-center space-y-4">
         <div className="text-3xl mb-5">
           Page Not Found, please return to the Home Page 🚀
