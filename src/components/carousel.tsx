@@ -53,7 +53,7 @@ const Carousel = () => {
   }, []);
 
   return (
-    <div
+    <section
       className="relative w-full max-w-full overflow-hidden"
       style={{ height: "60vh" }}
     >
@@ -92,7 +92,7 @@ const Carousel = () => {
         <ChevronRight className="h-4 w-4" />
         <span className="sr-only">Next slide</span>
       </Button>
-    </div>
+    </section>
   );
 };
 

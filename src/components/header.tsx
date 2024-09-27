@@ -82,21 +82,17 @@ export default function Header() {
                     <SheetTitle>Menu</SheetTitle>
                   </SheetHeader>
                   <div className="mt-4 space-y-4">
-                    <Link href="/about" className="block text-base font-medium">
-                      Men
-                    </Link>
-                    <Link
-                      href="/products"
-                      className="block text-base font-medium"
-                    >
-                      Women
-                    </Link>
-                    <Link
-                      href="/contact"
-                      className="block text-base font-medium"
-                    >
-                      Shoes
-                    </Link>
+                    {ITEMS_NAV.map((items) => {
+                      return (
+                        <Link
+                          key={items.name}
+                          href={items.href}
+                          className="text-sm font-medium"
+                        >
+                          {items.name}
+                        </Link>
+                      );
+                    })}
                   </div>
                   <div className="mt-6">
                     <Input
