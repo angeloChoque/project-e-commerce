@@ -36,8 +36,8 @@ async function ListProductos() {
   );
 
   return (
-    <section className="mx-4 lg:mx-28 xl:mx-48">
-      <h2 className="my-10 text-4xl text-center">Products</h2>
+    <section className="mx-4 my-14 lg:mx-28 xl:mx-48">
+      <h1 className=" mb-16 text-4xl text-center">PRODUCTS</h1>
       <div className="text-center">
         <h3 className="text-2xl my-8 ml-7 text-start">For Men:</h3>
         <Carousel

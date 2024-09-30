@@ -1,6 +1,7 @@
 import Carousel from "@/components/carousel";
 import Header from "@/components/header";
 import ListProducts from "@/components/listProducts";
+import FooterPage from "@/components/footerPage";
 
 export default function Home() {
   return (
@@ -10,7 +11,7 @@ export default function Home() {
         <Carousel />
         <ListProducts />
       </main>
-      <footer className="mt-96">asd</footer>
+      <FooterPage />
     </>
   );
 }

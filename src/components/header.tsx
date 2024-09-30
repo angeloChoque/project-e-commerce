@@ -39,7 +39,7 @@ export default function Header() {
                   <Link
                     key={items.name}
                     href={items.href}
-                    className="text-sm font-medium"
+                    className="text-lg font-medium"
                   >
                     {items.name}
                   </Link>
@@ -81,7 +81,7 @@ export default function Header() {
                   <SheetHeader>
                     <SheetTitle>Menu</SheetTitle>
                   </SheetHeader>
-                  <div className="mt-4 space-y-4">
+                  <div className="flex flex-col mt-4 space-y-4">
                     {ITEMS_NAV.map((items) => {
                       return (
                         <Link
