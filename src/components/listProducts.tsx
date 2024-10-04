@@ -8,7 +8,7 @@ import {
   CarouselPrevious,
 } from "./ui/carousel";
 import { ShoppingCart } from "lucide-react";
-// import Link from "next/link";
+import Link from "next/link";
 
 type Data = {
   id: number;
@@ -73,14 +73,17 @@ async function ListProductos() {
                             ${product.price}
                           </span>
                         </div>
-                        <div className="flex gap-4 mt-4">
-                          <button className="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 px-3 rounded-xl">
+                        <div className="flex gap-4 mt-4 w-full">
+                          <button className="flex-1 bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 px-3 rounded-xl flex items-center justify-center">
                             <ShoppingCart className="inline mr-2" />
                             Cart
                           </button>
-                          <button className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-3 rounded-xl">
+                          <Link
+                            href={`/products/${product.id}`}
+                            className="flex-1 bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-3 rounded-xl flex items-center justify-center"
+                          >
                             Buy
-                          </button>
+                          </Link>
                         </div>
                       </div>
                     </div>
@@ -129,14 +132,17 @@ async function ListProductos() {
                             ${product.price}
                           </span>
                         </div>
-                        <div className="flex gap-4 mt-4">
-                          <button className="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 px-3 rounded-xl">
+                        <div className="flex gap-4 mt-4 w-full">
+                          <button className="flex-1 bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 px-3 rounded-xl flex items-center justify-center">
                             <ShoppingCart className="inline mr-2" />
                             Cart
                           </button>
-                          <button className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-3 rounded-xl">
+                          <Link
+                            href={`/products/${product.id}`}
+                            className="flex-1 bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-3 rounded-xl flex items-center justify-center"
+                          >
                             Buy
-                          </button>
+                          </Link>
                         </div>
                       </div>
                     </div>
