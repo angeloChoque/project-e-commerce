@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Card } from "./ui/card";
+import { Card } from "@/components/ui/card";
 import {
   Carousel,
   CarouselContent,
@@ -7,17 +7,9 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "./ui/carousel";
-import { ShoppingCart } from "lucide-react";
 import Link from "next/link";
-
-type Data = {
-  id: number;
-  title: string;
-  price: number;
-  description: string;
-  category: string;
-  image: string;
-};
+import { Data } from "@/types/product";
+import ButtonCart from "@/components/shopping/buttonCart";
 
 async function getProducts() {
   const res = await fetch(`https://fakestoreapi.com/products`);
@@ -61,6 +53,7 @@ async function ListProductos() {
                         height={320}
                         width={320}
                         className="rounded-lg transition-all duration-500 ease-in-out group-hover:scale-105 text-center"
+                        priority
                       />
                     </div>
                     <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/80 via-transparent to-transparent p-6">
@@ -74,10 +67,7 @@ async function ListProductos() {
                           </span>
                         </div>
                         <div className="flex gap-4 mt-4 w-full">
-                          <button className="flex-1 bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 px-3 rounded-xl flex items-center justify-center">
-                            <ShoppingCart className="inline mr-2" />
-                            Cart
-                          </button>
+                          <ButtonCart product={product} />
                           <Link
                             href={`/products/${product.id}`}
                             className="flex-1 bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-3 rounded-xl flex items-center justify-center"
@@ -120,6 +110,7 @@ async function ListProductos() {
                         height={320}
                         width={320}
                         className="rounded-lg transition-all duration-500 ease-in-out group-hover:scale-105 text-center"
+                        priority
                       />
                     </div>
                     <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/80 via-transparent to-transparent p-6">
@@ -133,10 +124,7 @@ async function ListProductos() {
                           </span>
                         </div>
                         <div className="flex gap-4 mt-4 w-full">
-                          <button className="flex-1 bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 px-3 rounded-xl flex items-center justify-center">
-                            <ShoppingCart className="inline mr-2" />
-                            Cart
-                          </button>
+                          <ButtonCart product={product} />
                           <Link
                             href={`/products/${product.id}`}
                             className="flex-1 bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-3 rounded-xl flex items-center justify-center"

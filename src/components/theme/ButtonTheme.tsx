@@ -24,8 +24,9 @@ const ButtonTheme = () => {
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent
-          align="end"
-          className="text-center bg-slate-50 dark:bg-black border-0"
+          align="center"
+          sideOffset={10}
+          className="text-center bg-slate-50 dark:bg-[#1f2937]"
         >
           <DropdownMenuItem
             onClick={() => setTheme("light")}

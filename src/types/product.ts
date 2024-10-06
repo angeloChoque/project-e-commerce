@@ -7,6 +7,9 @@ export interface Data {
   image: string;
   rating: Rating;
 }
+export interface CartItem extends Data {
+  quantity: number;
+}
 interface Rating {
   rate: number;
   count: number;
@@ -14,4 +17,14 @@ interface Rating {
 
 export interface Params {
   product: number;
+}
+
+export interface CartState {
+  cartItems: CartItem[];
+  addToCart: (product: Data) => void;
+  // removeFromCart: (id: number) => void;
+  // updateQuantity: (id: number, quantity: number) => void;
+  // clearCart: () => void;
+  // totalItems: () => number;
+  // totalPrice: () => number;
 }
