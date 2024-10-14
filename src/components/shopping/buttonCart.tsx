@@ -11,6 +11,7 @@ interface ButtonCartProps {
 function ButtonCart({ product }: ButtonCartProps) {
   const addCart = useCartStore((state) => state.addToCart);
 
+  //no es necesario el hanndle , pero lo hago para guiarme si esta dando click o no
   const handleAddToCart = (product: Data) => {
     addCart(product);
     console.log("Producto añadido al carrito:", product);
