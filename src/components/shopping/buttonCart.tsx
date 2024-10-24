@@ -20,7 +20,7 @@ function ButtonCart({ product }: ButtonCartProps) {
   return (
     <button
       onClick={() => handleAddToCart(product)}
-      className="flex-1 bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 px-3 rounded-xl flex items-center justify-center"
+      className="flex-1 bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 px-3 rounded-xl flex items-center justify-center"
     >
       <ShoppingCart className="inline mr-2" />
       Cart

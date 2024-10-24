@@ -22,7 +22,8 @@ export interface Params {
 export interface CartState {
   cartItems: CartItem[];
   addToCart: (product: Data) => void;
-  // removeFromCart: (id: number) => void;
+  removeCart: (id: number) => void;
+  removeToList: (id: number) => void;
   // updateQuantity: (id: number, quantity: number) => void;
   // clearCart: () => void;
   // totalItems: () => number;

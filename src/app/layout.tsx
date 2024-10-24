@@ -3,6 +3,7 @@ import "./globals.css";
 import { Poppins } from "next/font/google";
 import { ThemeProvider } from "@/components/theme/themeProvider";
 import Header from "@/components/header";
+import FooterPage from "@/components/footerPage";
 
 const poppins = Poppins({
   weight: "400",
@@ -30,6 +31,7 @@ export default function RootLayout({
         >
           <Header />
           {children}
+          <FooterPage />
         </ThemeProvider>
       </body>
     </html>

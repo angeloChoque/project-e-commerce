@@ -1,4 +1,4 @@
-import Carousel from "@/components/carousel";
+import Carousel from "@/components/Carousel";
 import ListProducts from "@/components/listProducts";
 import FooterPage from "@/components/footerPage";
 
