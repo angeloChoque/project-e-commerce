@@ -1,9 +1,11 @@
 import Image from "next/image";
-import { ShoppingCart, Heart } from "lucide-react";
+import { Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Start from "@/components/ui/start";
 import { Data, Params } from "@/types/product";
 import { Separator } from "@/components/ui/separator";
+import ButtonCart from "@/components/shopping/buttonCart";
+import Link from "next/link";
 
 async function getProducts(id: number) {
   const res = await fetch(`https://fakestoreapi.com/products/${id}`);
@@ -16,7 +18,7 @@ async function Page({ params }: { params: Params }) {
 
   return (
     <>
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 ">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 ">
         <div className="grid md:grid-cols-2 gap-8">
           {/* Product Image */}
           <div className="relative aspect-square">
@@ -33,7 +35,7 @@ async function Page({ params }: { params: Params }) {
           </div>
 
           {/* Product Details */}
-          <div className="space-y-6 border-2 rounded-xl p-5 shadow-lg ">
+          <div className="space-y-6 border-2 rounded-xl p-5 pt-10 shadow-lg ">
             <h1 className="text-3xl font-bold">{product.title}</h1>
             <div className="flex items-center space-x-2">
               <Start rate={product.rating.rate} />
@@ -74,20 +76,20 @@ async function Page({ params }: { params: Params }) {
               </div>
             </div>
             <div className="flex space-x-4">
-              <Button className="flex-1 bg-orange-500 hover:bg-orange-600 rounded-xl">
-                <ShoppingCart className="w-4 h-4 mr-2 bg-" />
-                Add to Cart
-              </Button>
-              <Button className="flex-1 bg-blue-500 hover:bg-blue-600 rounded-xl">
+              <ButtonCart product={product} />
+              <Link
+                href={"/products/sheckout"}
+                className="flex-1 bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-3 rounded-xl flex items-center justify-center"
+              >
                 Buy now
-              </Button>
+              </Link>
               <Button variant="outline">
                 <Heart className="w-4 h-4" />
               </Button>
             </div>
           </div>
         </div>
-      </main>
+      </div>
       <Separator className="bg-black mt-10 dark:bg-white" />
     </>
   );
