@@ -7,6 +7,7 @@ import {
   Card,
   CardContent,
   CardDescription,
+  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
@@ -20,57 +21,88 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import Image from "next/image";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 export default function Page() {
   const [isProcessing, setIsProcessing] = useState(false);
 
+  const router = useRouter();
+
+  const numberProducts = 10;
+
+  const handleClick = () => {
+    const myPromise = new Promise<{ name: string }>((resolve, reject) => {
+      setTimeout(() => {
+        const success = true;
+        success
+          ? numberProducts > 0
+            ? resolve({
+                name: `${numberProducts} producto${
+                  numberProducts > 1 ? "s" : ""
+                }`,
+              })
+            : reject("Number of products is less than 0.")
+          : reject("Ocurrió un error");
+      }, 2000);
+    });
+
+    toast.promise(myPromise, {
+      loading: "Cargando...",
+      success: (data) => {
+        router.push("/products");
+        return `La compra de ${data.name} producto se ha realizado`;
+      },
+      error: (error) => error,
+    });
+    myPromise.finally(() => setIsProcessing(false));
+  };
+
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     setIsProcessing(true);
-    setTimeout(() => {
-      setIsProcessing(false);
-      alert("¡Compra realizada con éxito!");
-    }, 2000);
+    handleClick();
   };
 
   return (
     <>
-      <div className="container xl:mx-auto lg:px-20 px-10 my-5 p-4">
+      <div className="container h-screen xl:mx-auto lg:px-20 px-5 p-4">
         <h1 className="text-2xl font-bold mb-6">Checkout</h1>
         <div className="grid md:grid-cols-2 gap-6">
-          <Card>
+          <Card className="rounded-xl">
             <CardHeader>
-              <CardTitle>Your order</CardTitle>
+              <CardTitle className="text-blue-500">Your order</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="flex items-center justify-between mb-4 p-2 border-t h-56">
-                <div className="flex space-x-4 self-start">
-                  <Image
-                    src="/carousel1.webp"
-                    alt="imagen"
-                    width={50}
-                    height={50}
-                  />
-                  <div>
+              <div className="flex justify-between my-1 border-b">
+                <p className="font-semibold mx-2">Product</p>
+                <p className="font-semibold mr-4">Price</p>
+              </div>
+              <div className="h-56 overflow-auto">
+                <div className="flex justify-between p-2">
+                  <div className="flex space-x-4 self-start ">
+                    <Image
+                      src="/carousel1.webp"
+                      alt="imagen"
+                      width={50}
+                      height={50}
+                    />
                     <h3 className="font-semibold">Nombre del Producto</h3>
-                    <p className="text-sm text-gray-500">Descripción corta</p>
                   </div>
+                  <p className="mr-1">$ 199</p>
                 </div>
-                <p className="text-lg font-bold self-start justify-center mt-2 ">
-                  $ 999
-                </p>
               </div>
 
-              <div className="border-t pt-4">
-                <div className="flex justify-between">
+              <div className="border-t pt-4 ">
+                <div className="flex justify-between mx-2">
                   <p>Subtotal</p>
                   <p>$99.99</p>
                 </div>
-                <div className="flex justify-between mt-2">
+                <div className="flex justify-between mt-2 mx-2">
                   <p>Impuestos</p>
                   <p>$10.00</p>
                 </div>
-                <div className="flex justify-between mt-2 font-semibold">
+                <div className="flex justify-between mt-2 font-semibold border-t p-2">
                   <p>Total</p>
                   <p>$109.99</p>
                 </div>
@@ -78,9 +110,11 @@ export default function Page() {
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="rounded-xl">
             <CardHeader>
-              <CardTitle>Payment information</CardTitle>
+              <CardTitle className="text-blue-500">
+                Payment information
+              </CardTitle>
               <CardDescription>
                 Enter your card details to process the payment.{" "}
               </CardDescription>
@@ -89,11 +123,11 @@ export default function Page() {
               <form onSubmit={handleSubmit}>
                 <div className="grid gap-4">
                   <div className="grid gap-2">
-                    <Label htmlFor="name">Nombre en la tarjeta</Label>
+                    <Label htmlFor="name">Name</Label>
                     <Input id="name" placeholder="Juan Pérez" required />
                   </div>
                   <div className="grid gap-2">
-                    <Label htmlFor="number">Número de tarjeta</Label>
+                    <Label htmlFor="number">Card</Label>
                     <Input
                       id="number"
                       placeholder="1234 5678 9012 3456"
@@ -102,10 +136,10 @@ export default function Page() {
                   </div>
                   <div className="grid grid-cols-3 gap-4">
                     <div className="grid gap-2">
-                      <Label htmlFor="month">Mes</Label>
+                      <Label htmlFor="month">Month</Label>
                       <Select>
                         <SelectTrigger id="month">
-                          <SelectValue placeholder="Mes" />
+                          <SelectValue placeholder="Month" />
                         </SelectTrigger>
                         <SelectContent>
                           {Array.from({ length: 12 }, (_, i) => i + 1).map(
@@ -122,10 +156,10 @@ export default function Page() {
                       </Select>
                     </div>
                     <div className="grid gap-2">
-                      <Label htmlFor="year">Año</Label>
+                      <Label htmlFor="year">Year</Label>
                       <Select>
                         <SelectTrigger id="year">
-                          <SelectValue placeholder="Año" />
+                          <SelectValue placeholder="Year" />
                         </SelectTrigger>
                         <SelectContent>
                           {Array.from(
@@ -144,20 +178,19 @@ export default function Page() {
                       <Input id="cvc" placeholder="123" required />
                     </div>
                   </div>
+
+                  <CardFooter>
+                    <Button
+                      className="w-full bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-3 mt-6 "
+                      type="submit"
+                      disabled={isProcessing}
+                    >
+                      <>
+                        <ShoppingCart className="mr-2 h-4 w-4" /> Pagar $109.99
+                      </>
+                    </Button>
+                  </CardFooter>
                 </div>
-                <Button
-                  className="w-full mt-6"
-                  type="submit"
-                  disabled={isProcessing}
-                >
-                  {isProcessing ? (
-                    <>Procesando...</>
-                  ) : (
-                    <>
-                      <ShoppingCart className="mr-2 h-4 w-4" /> Pagar $109.99
-                    </>
-                  )}
-                </Button>
               </form>
             </CardContent>
           </Card>

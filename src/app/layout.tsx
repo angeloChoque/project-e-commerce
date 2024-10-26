@@ -4,6 +4,7 @@ import { Poppins } from "next/font/google";
 import { ThemeProvider } from "@/components/theme/themeProvider";
 import Header from "@/components/header";
 import FooterPage from "@/components/footerPage";
+import { Toaster } from "sonner";
 
 const poppins = Poppins({
   weight: "400",
@@ -33,6 +34,7 @@ export default function RootLayout({
           <main>{children}</main>
           <FooterPage />
         </ThemeProvider>
+        <Toaster richColors position="top-right" />
       </body>
     </html>
   );
