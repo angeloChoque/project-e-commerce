@@ -52,6 +52,16 @@ const Carousel = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  useEffect(() => {
+    if (!emblaApi) return;
+
+    const interval = setInterval(() => {
+      scrollNext();
+    }, 10000);
+
+    return () => clearInterval(interval);
+  }, [emblaApi, scrollNext]);
+
   return (
     <section
       className="relative w-full max-w-full overflow-hidden"

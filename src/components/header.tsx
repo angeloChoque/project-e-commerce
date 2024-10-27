@@ -97,14 +97,6 @@ export default function Header() {
               })}
             </div>
           </nav>
-
-          <div className="hidden md:block mr-4">
-            <Input
-              type="search"
-              placeholder="Search..."
-              className="w-full rounded-xl"
-            />
-          </div>
         </div>
       </div>
     </header>

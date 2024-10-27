@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Badge } from "@/components/ui/badge";
 import { useCartStore } from "@/store/useCartStore";
+import Link from "next/link";
 
 export default function ShoppingButton() {
   const cartConfig = useCartStore((state) => state);
@@ -105,12 +106,12 @@ export default function ShoppingButton() {
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuItem className="justify-center">
-          <Button
-            variant={"outline"}
-            className="w-full rounded-xl bg-black text-white"
+          <Link
+            className="w-full text-center bg-blue-500 hover:bg-blue-700 self-center text-white font-semibold py-2 px-3 rounded-xl"
+            href="/products/sheckout"
           >
             Go To Cart
-          </Button>
+          </Link>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
