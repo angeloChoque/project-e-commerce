@@ -24,8 +24,5 @@ export interface CartState {
   addToCart: (product: Data) => void;
   removeCart: (id: number) => void;
   removeToList: (id: number) => void;
-  // updateQuantity: (id: number, quantity: number) => void;
-  // clearCart: () => void;
-  // totalItems: () => number;
-  // totalPrice: () => number;
+  clearCart: () => void;
 }

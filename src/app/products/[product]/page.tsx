@@ -5,7 +5,7 @@ import Start from "@/components/ui/start";
 import { Data, Params } from "@/types/product";
 import { Separator } from "@/components/ui/separator";
 import ButtonCart from "@/components/shopping/buttonCart";
-import Link from "next/link";
+import ButtonBuy from "@/components/shopping/buttonBuy";
 
 async function getProducts(id: number) {
   const res = await fetch(`https://fakestoreapi.com/products/${id}`);
@@ -77,12 +77,7 @@ async function Page({ params }: { params: Params }) {
             </div>
             <div className="flex space-x-4">
               <ButtonCart product={product} />
-              <Link
-                href={"/products/sheckout"}
-                className="flex-1 bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-3 rounded-xl flex items-center justify-center"
-              >
-                Buy now
-              </Link>
+              <ButtonBuy product={product} />
               <Button variant="outline">
                 <Heart className="w-4 h-4" />
               </Button>

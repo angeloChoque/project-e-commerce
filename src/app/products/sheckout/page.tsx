@@ -23,23 +23,35 @@ import {
 import Image from "next/image";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import { useCartStore } from "@/store/useCartStore";
 
 export default function Page() {
   const [isProcessing, setIsProcessing] = useState(false);
 
+  const cartProducts = useCartStore((set) => set.cartItems);
+  const cartRemove = useCartStore((set) => set.clearCart);
+
+  const totalPrice = cartProducts
+    .reduce((cc, item) => cc + item.price * item.quantity, 0)
+    .toFixed(2);
   const router = useRouter();
 
-  const numberProducts = 10;
+  const priceWithTax = (parseFloat(totalPrice) + 10).toFixed(2);
+
+  const NumbeProducts = cartProducts.reduce(
+    (acc, item) => acc + item.quantity,
+    0
+  );
 
   const handleClick = () => {
     const myPromise = new Promise<{ name: string }>((resolve, reject) => {
       setTimeout(() => {
         const success = true;
         success
-          ? numberProducts > 0
+          ? cartProducts.length > 0
             ? resolve({
-                name: `${numberProducts} producto${
-                  numberProducts > 1 ? "s" : ""
+                name: `${NumbeProducts} producto${
+                  cartProducts.length > 1 ? "s" : ""
                 }`,
               })
             : reject("Number of products is less than 0.")
@@ -50,6 +62,7 @@ export default function Page() {
     toast.promise(myPromise, {
       loading: "Cargando...",
       success: (data) => {
+        cartRemove();
         router.push("/products");
         return `La compra de ${data.name} producto se ha realizado`;
       },
@@ -79,24 +92,30 @@ export default function Page() {
                 <p className="font-semibold mr-4">Price</p>
               </div>
               <div className="h-56 overflow-auto">
-                <div className="flex justify-between p-2">
-                  <div className="flex space-x-4 self-start ">
-                    <Image
-                      src="/carousel1.webp"
-                      alt="imagen"
-                      width={50}
-                      height={50}
-                    />
-                    <h3 className="font-semibold">Nombre del Producto</h3>
-                  </div>
-                  <p className="mr-1">$ 199</p>
-                </div>
+                {cartProducts.map((item) => {
+                  return (
+                    <>
+                      <div className="flex justify-between p-2">
+                        <div className="flex space-x-4 self-start ">
+                          <Image
+                            src={item.image}
+                            alt="imagen"
+                            width={50}
+                            height={50}
+                          />
+                          <h3 className="font-semibold">{item.title}</h3>
+                        </div>
+                        <p className="mr-1">{item.price * item.quantity}</p>
+                      </div>
+                    </>
+                  );
+                })}
               </div>
 
               <div className="border-t pt-4 ">
                 <div className="flex justify-between mx-2">
                   <p>Subtotal</p>
-                  <p>$99.99</p>
+                  <p>${totalPrice}</p>
                 </div>
                 <div className="flex justify-between mt-2 mx-2">
                   <p>Impuestos</p>
@@ -104,7 +123,7 @@ export default function Page() {
                 </div>
                 <div className="flex justify-between mt-2 font-semibold border-t p-2">
                   <p>Total</p>
-                  <p>$109.99</p>
+                  <p>{priceWithTax}</p>
                 </div>
               </div>
             </CardContent>
@@ -186,7 +205,8 @@ export default function Page() {
                       disabled={isProcessing}
                     >
                       <>
-                        <ShoppingCart className="mr-2 h-4 w-4" /> Pagar $109.99
+                        <ShoppingCart className="mr-2 h-4 w-4" />
+                        Pagar ${priceWithTax}
                       </>
                     </Button>
                   </CardFooter>

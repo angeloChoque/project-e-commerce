@@ -9,7 +9,7 @@ function page() {
         ¡¡¡Thank you for shopping at the best store in the world!!!
       </h1>
       <Link
-        className="flex bg-blue-500 hover:bg-blue-700 self-center text-white font-semibold py-2 px-3 rounded-xl"
+        className="flex bg-blue-500 hover:bg-blue-700 self-center text-white font-semibold p-3 rounded-xl"
         href={"/"}
       >
         <ShoppingCart className="pr-2" />
