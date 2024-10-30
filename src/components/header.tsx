@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { Heart, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { ITEMS_NAV } from "@/data/dataHeader";
 import {
   Sheet,
@@ -49,13 +48,6 @@ export default function Header() {
                       </Link>
                     );
                   })}
-                </div>
-                <div className="mt-6">
-                  <Input
-                    type="search"
-                    placeholder="Search..."
-                    className="w-full rounded-xl"
-                  />
                 </div>
               </SheetContent>
             </Sheet>

@@ -94,20 +94,18 @@ export default function Page() {
               <div className="h-56 overflow-auto">
                 {cartProducts.map((item) => {
                   return (
-                    <>
-                      <div className="flex justify-between p-2">
-                        <div className="flex space-x-4 self-start ">
-                          <Image
-                            src={item.image}
-                            alt="imagen"
-                            width={50}
-                            height={50}
-                          />
-                          <h3 className="font-semibold">{item.title}</h3>
-                        </div>
-                        <p className="mr-1">{item.price * item.quantity}</p>
+                    <div key={item.id} className="flex justify-between p-2">
+                      <div className="flex space-x-4 self-start ">
+                        <Image
+                          src={item.image}
+                          alt={item.title}
+                          width={50}
+                          height={50}
+                        />
+                        <h3 className="font-semibold">{item.title}</h3>
                       </div>
-                    </>
+                      <p className="mr-1">{item.price * item.quantity}</p>
+                    </div>
                   );
                 })}
               </div>
