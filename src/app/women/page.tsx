@@ -21,7 +21,7 @@ export default function Component() {
   }, []);
 
   const ProductMen = ProductsMen.filter(
-    (men) => men.category === "men's clothing"
+    (men) => men.category === "women's clothing"
   );
 
   const filteredProducts = ProductMen.filter((product) =>

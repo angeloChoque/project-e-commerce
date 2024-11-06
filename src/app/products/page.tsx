@@ -6,7 +6,7 @@ function page() {
   return (
     <div className="h-screen flex flex-col text-center justify-center">
       <h1 className="self-center text-4xl my-8">
-        ¡¡¡Thank you for shopping at the best store in the world!!!
+        Thank you for shopping at the best store in the world!!!
       </h1>
       <Link
         className="flex bg-blue-500 hover:bg-blue-700 self-center text-white font-semibold p-3 rounded-xl"
