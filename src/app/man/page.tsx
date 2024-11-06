@@ -1,49 +1,28 @@
 "use client";
-
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Image from "next/image";
 import { Search } from "lucide-react";
-
-const imageData = [
-  {
-    id: 1,
-    name: "Paisaje montañoso",
-    url: "/placeholder.svg?height=200&width=200",
-  },
-  {
-    id: 2,
-    name: "Playa tropical",
-    url: "/placeholder.svg?height=200&width=200",
-  },
-  {
-    id: 3,
-    name: "Ciudad nocturna",
-    url: "/placeholder.svg?height=200&width=200",
-  },
-  {
-    id: 4,
-    name: "Bosque otoñal",
-    url: "/placeholder.svg?height=200&width=200",
-  },
-  {
-    id: 5,
-    name: "Desierto al atardecer",
-    url: "/placeholder.svg?height=200&width=200",
-  },
-  {
-    id: 6,
-    name: "Cascada en la selva",
-    url: "/placeholder.svg?height=200&width=200",
-  },
-];
+import { Data } from "@/types/product";
 
 export default function Component() {
   const [filter, setFilter] = useState("");
+  const [ProductsMen, setProductsMen] = useState<Data[]>([]);
 
-  const filteredImages = imageData.filter((img) =>
-    img.name.toLowerCase().includes(filter.toLowerCase())
+  useEffect(() => {
+    fetch("https://fakestoreapi.com/products")
+      .then((response) => response.json())
+      .then((data: Data[]) => setProductsMen(data))
+      .catch((error) => console.error("Error fetching data:", error));
+  }, []);
+
+  const ProductMen = ProductsMen.filter(
+    (men) => men.category === "men's clothing"
+  );
+
+  const filteredProducts = ProductMen.filter((product) =>
+    product.title.toLowerCase().includes(filter.toLowerCase())
   );
 
   return (
@@ -75,29 +54,29 @@ export default function Component() {
           </div>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-          {filteredImages.map((img) => (
+          {filteredProducts.map((product) => (
             <div
-              key={img.id}
+              key={product.id}
               className="bg-white border rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300"
             >
               <Image
-                src={img.url}
-                alt={img.name}
+                src={product.image}
+                alt={product.title}
                 width={200}
                 height={200}
                 className="w-full h-48 object-cover"
               />
               <div className="p-4">
                 <h2 className="text-lg font-semibold text-gray-800">
-                  {img.name}
+                  {product.title}
                 </h2>
               </div>
             </div>
           ))}
         </div>
-        {filteredImages.length === 0 && (
+        {filteredProducts.length === 0 && (
           <p className="text-center text-gray-500 mt-8 text-lg">
-            No se encontraron imágenes que coincidan con el filtro.
+            No se encontraron productos que coincidan con el filtro.
           </p>
         )}
       </div>
