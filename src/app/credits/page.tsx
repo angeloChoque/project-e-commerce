@@ -9,14 +9,12 @@ const Page = () => {
         </h1>
         <div className="mx-10 mt-8 max-w-4xl text-left md:mx-auto">
           <p className="text-justify text-lg">
-            En este proyecto, simulo una tienda de comercio electrónico que
-            permite a los usuarios seleccionar y comprar uno o varios productos
-            de forma simultánea. El sistema incluye una experiencia completa de
-            pago, opciones de productos y una interfaz atractiva y funcional.
-            Utilizo diferentes librerías de componentes y estilos para asegurar
-            que la página cumpla con sus objetivos de manera eficiente,
-            ofreciendo una experiencia de usuario intuitiva y visualmente
-            agradable.
+            In this project, I simulate an e-commerce store that allows users to
+            select and purchase one or more products simultaneously. The system
+            includes a complete checkout experience, product options, and an
+            attractive and functional interface. I use different component and
+            style libraries to ensure that the page meets its goals efficiently,
+            providing an intuitive and visually pleasing user experience.
           </p>
           <h2 className="text-2xl my-5 font-bold">Libraries:</h2>
           <ul className="list-disc list-inside">

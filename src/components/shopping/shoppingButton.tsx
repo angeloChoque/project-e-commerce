@@ -47,7 +47,7 @@ export default function ShoppingButton() {
                 key={item.id}
                 className="flex items-center justify-between p-2"
               >
-                <span className="font-medium text-ellipsis w-32">
+                <span className="font-medium text-ellipsis w-32 ">
                   {item.title}
                 </span>
                 <div className="flex items-center space-x-2">

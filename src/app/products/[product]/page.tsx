@@ -1,11 +1,11 @@
 import Image from "next/image";
-import { Heart } from "lucide-react";
-import { Button } from "@/components/ui/button";
+
 import Start from "@/components/ui/start";
 import { Data, Params } from "@/types/product";
 import { Separator } from "@/components/ui/separator";
 import ButtonCart from "@/components/shopping/buttonCart";
 import ButtonBuy from "@/components/shopping/buttonBuy";
+import ButtonFavorite from "@/components/shopping/ButtonFavorite";
 
 async function getProducts(id: number) {
   const res = await fetch(`https://fakestoreapi.com/products/${id}`);
@@ -78,9 +78,7 @@ async function Page({ params }: { params: Params }) {
             <div className="flex space-x-4">
               <ButtonCart product={product} />
               <ButtonBuy product={product} />
-              <Button variant="outline">
-                <Heart className="w-4 h-4" />
-              </Button>
+              <ButtonFavorite products={product} />
             </div>
           </div>
         </div>

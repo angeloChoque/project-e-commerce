@@ -68,10 +68,10 @@ export default function Header() {
           <div className="flex items-center space-x-2 order-2 ml-auto">
             <ButtonTheme />
             <ShoppingButton />
-            <Button variant="ghost" size="icon">
-              <Heart className="h-5 w-5" />
+            <Link href="/favorite">
+              <Heart className="h-5 w-5 ml-2" />
               <span className="sr-only">Favorites</span>
-            </Button>
+            </Link>
           </div>
 
           <nav className="hidden md:flex md:items-center md:justify-center md:flex-1">

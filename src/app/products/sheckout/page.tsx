@@ -54,7 +54,7 @@ export default function Page() {
                   cartProducts.length > 1 ? "s" : ""
                 }`,
               })
-            : reject("Number of products is less than 0.")
+            : reject("Number of products is 0.")
           : reject("Ocurrió un error");
       }, 2000);
     });
@@ -92,10 +92,16 @@ export default function Page() {
                 <p className="font-semibold mr-4">Price</p>
               </div>
               <div className="h-56 overflow-auto">
-                {cartProducts.map((item) => {
-                  return (
+                {cartProducts.length === 0 ? (
+                  <div className="flex items-center justify-center h-full">
+                    <p className="text-center text-gray-500">
+                      No products available to purchase.
+                    </p>
+                  </div>
+                ) : (
+                  cartProducts.map((item) => (
                     <div key={item.id} className="flex justify-between p-2">
-                      <div className="flex space-x-4 self-start ">
+                      <div className="flex space-x-4 self-start">
                         <Image
                           src={item.image}
                           alt={item.title}
@@ -106,8 +112,8 @@ export default function Page() {
                       </div>
                       <p className="mr-1">{item.price * item.quantity}</p>
                     </div>
-                  );
-                })}
+                  ))
+                )}
               </div>
 
               <div className="border-t pt-4 ">

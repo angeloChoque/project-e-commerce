@@ -1,5 +1,5 @@
 export const ITEMS_NAV = [
   { name: "Man", href: "/man" },
-  { name: "Likes", href: "/like" },
+  { name: "Favorite", href: "/favorite" },
   { name: "Credits", href: "/credits" },
 ];

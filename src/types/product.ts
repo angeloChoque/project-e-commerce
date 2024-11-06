@@ -10,7 +10,7 @@ export interface Data {
 export interface CartItem extends Data {
   quantity: number;
 }
-interface Rating {
+export interface Rating {
   rate: number;
   count: number;
 }
