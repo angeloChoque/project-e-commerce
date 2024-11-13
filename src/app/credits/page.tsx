@@ -2,7 +2,7 @@ import React from "react";
 
 const Page = () => {
   return (
-    <div className="h-screen flex justify-center my-10 md:my-0 ">
+    <div className="h-screen flex justify-center mt-10 mb-36 md:my-0 ">
       <div className="container flex flex-col text-center md:my-10 ">
         <h1 className="text-4xl text-orange-600 underline">
           Project E-commerce

@@ -79,7 +79,7 @@ export default function Page() {
 
   return (
     <>
-      <div className="container h-screen xl:mx-auto lg:px-20 px-5 p-4">
+      <div className="container h-screen xl:mx-auto lg:px-20 px-5 p-4 sm:mb-0 mb-96">
         <h1 className="text-2xl font-bold mb-6">Checkout</h1>
         <div className="grid md:grid-cols-2 gap-6">
           <Card className="rounded-xl">
@@ -122,7 +122,7 @@ export default function Page() {
                   <p>${totalPrice}</p>
                 </div>
                 <div className="flex justify-between mt-2 mx-2">
-                  <p>Impuestos</p>
+                  <p>Taxes</p>
                   <p>$10.00</p>
                 </div>
                 <div className="flex justify-between mt-2 font-semibold border-t p-2">
